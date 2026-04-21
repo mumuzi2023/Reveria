@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "project": "Reveria",
+    "updated_at": "2026-04-21T18:34:52+08:00",
+    "owner": "copilot"
+  },
+  "items": [
+    {
+      "id": "T001",
+      "title": "Fix navbar hover reveal",
+      "status": "done",
+      "priority": "P0",
+      "depends_on": [],
+      "acceptance": "Navbar can reveal when hovering the top edge before scrolling and still stays visible after scrolling down.",
+      "notes": "Added a top hover trigger zone and shared visibility logic for hover and scroll reveal.",
+      "last_updated": "2026-04-21T18:32:36+08:00"
+    },
+    {
+      "id": "T002",
+      "title": "Publish navbar fix",
+      "status": "done",
+      "priority": "P0",
+      "depends_on": [
+        "T001"
+      ],
+      "acceptance": "The navbar fix is committed, pushed to main, and GitHub Pages deployment is triggered.",
+      "notes": "Validate locally before pushing.",
+      "last_updated": "2026-04-21T18:34:52+08:00"
+    }
+  ]
+}

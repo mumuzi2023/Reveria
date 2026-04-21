@@ -160,6 +160,8 @@
 </head>
 <body class="bg-slate-50 text-slate-800 overflow-x-hidden">
 
+  <div id="nav-hover-zone" class="fixed inset-x-0 top-0 z-40 h-6" aria-hidden="true"></div>
+
   <!-- ═══════════ Navigation ═══════════ -->
   <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 -translate-y-full">
     <div class="nav-blur bg-white/80 border-b border-slate-200/60">
@@ -505,11 +507,38 @@
 
   <!-- ═══════════ Scripts ═══════════ -->
   <script>
-    // Navbar show/hide on scroll
+    // Reveal the navbar either after scrolling or when hovering the top edge.
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.style.transform = window.scrollY > 300 ? 'translateY(0)' : 'translateY(-100%)';
-    });
+    const navHoverZone = document.getElementById('nav-hover-zone');
+    const navRevealScrollY = 300;
+    let navHoverActive = false;
+    let navHideTimeoutId;
+
+    function updateNavbarVisibility() {
+      const shouldShow = window.scrollY > navRevealScrollY || navHoverActive;
+      navbar.style.transform = shouldShow ? 'translateY(0)' : 'translateY(-100%)';
+    }
+
+    function setNavHoverActive(active) {
+      window.clearTimeout(navHideTimeoutId);
+      if (active) {
+        navHoverActive = true;
+        updateNavbarVisibility();
+        return;
+      }
+
+      navHideTimeoutId = window.setTimeout(() => {
+        navHoverActive = false;
+        updateNavbarVisibility();
+      }, 80);
+    }
+
+    navHoverZone.addEventListener('mouseenter', () => setNavHoverActive(true));
+    navHoverZone.addEventListener('mouseleave', () => setNavHoverActive(false));
+    navbar.addEventListener('mouseenter', () => setNavHoverActive(true));
+    navbar.addEventListener('mouseleave', () => setNavHoverActive(false));
+    window.addEventListener('scroll', updateNavbarVisibility);
+    updateNavbarVisibility();
 
     // Intersection Observer for fade-in
     const observer = new IntersectionObserver((entries) => {
