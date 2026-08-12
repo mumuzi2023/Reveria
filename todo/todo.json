@@ -1,7 +1,7 @@
 {
   "meta": {
     "project": "Reveria",
-    "updated_at": "2026-04-21T18:34:52+08:00",
+    "updated_at": "2026-08-11T11:28:31+08:00",
     "owner": "copilot"
   },
   "items": [
@@ -26,6 +26,16 @@
       "acceptance": "The navbar fix is committed, pushed to main, and GitHub Pages deployment is triggered.",
       "notes": "Validate locally before pushing.",
       "last_updated": "2026-04-21T18:34:52+08:00"
+    },
+    {
+      "id": "T003",
+      "title": "Update website repository documentation",
+      "status": "done",
+      "priority": "P1",
+      "depends_on": ["T002"],
+      "acceptance": "README matches the current static-site structure, local preview method, deployment workflow, and private related repositories.",
+      "notes": "README now documents the static site structure, local HTTP preview, Pages workflow and private related repositories. index.html remains unchanged; links and JSON validated.",
+      "last_updated": "2026-08-11T11:28:31+08:00"
     }
   ]
 }
